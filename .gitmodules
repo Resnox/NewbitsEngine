@@ -1,0 +1,6 @@
+[submodule "FNA-libs"]
+	path = FNA-libs
+	url = https://github.com/deccer/FNA-libs
+[submodule "FNA"]
+	path = FNA
+	url = https://github.com/FNA-XNA/FNA.git

@@ -1,0 +1,6 @@
+.DS_Store
+.vs
+FNA
+FNA-libs
+NewbitsEngine/bin/
+NewbitsEngine/obj/
