@@ -218,7 +218,7 @@ public sealed class Transform
     {
         Parent?._children.Remove(this);
         parent?._children.Add(this);
-        Parent = parent;
+        _parent = parent;
 
         return this;
     }

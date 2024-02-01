@@ -45,8 +45,9 @@ public sealed class Entity
     public T AddComponent<T>() where T : Component
     {
         var component = (T)Activator.CreateInstance(typeof(T), this);
+        _components.Add(typeof(T), component);
 
-        return _components.TryAdd(typeof(T), component) ? component : null;
+        return component;
     }
 
     public T GetComponent<T>() where T : Component
