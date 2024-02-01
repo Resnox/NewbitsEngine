@@ -4,9 +4,11 @@ namespace NewbitsEngine.Core;
 
 public abstract class Component
 {
-    protected Entity entity;
-    private bool _enabled = true;
+    public Transform Transform => entity.Transform;
 
+    protected Entity entity;
+    
+    private bool _enabled = true;
     public bool Enabled
     {
         get => _enabled;

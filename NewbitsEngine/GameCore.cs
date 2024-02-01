@@ -67,6 +67,7 @@ public class GameCore : XnaGame
             null,
             Matrix.Identity //Camera.Transform
         );
+        
         SpriteBatch.End();
     }
 }

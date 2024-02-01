@@ -2,7 +2,7 @@
 
 namespace NewbitsEngine.Core;
 
-public interface IRenderableComponent
+public interface IRenderable
 {
     public void Draw(SpriteBatch spriteBatch);
 }

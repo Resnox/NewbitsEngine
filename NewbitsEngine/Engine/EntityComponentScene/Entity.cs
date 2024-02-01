@@ -66,7 +66,7 @@ public sealed class Entity
             return;
         
         foreach (var component in _components.Values)
-            if (component is IUpdatableComponent updatableComponent && component.Enabled)
+            if (component is IUpdatable updatableComponent && component.Enabled)
                 updatableComponent.Update(time);
     }
 }

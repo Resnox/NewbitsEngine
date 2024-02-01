@@ -2,7 +2,7 @@
 
 namespace NewbitsEngine.Core;
 
-public interface IUpdatableComponent
+public interface IUpdatable
 {
     public void Update(TimeSpan time);
 }
