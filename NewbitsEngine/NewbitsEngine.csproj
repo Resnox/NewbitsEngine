@@ -44,7 +44,7 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="content\"/>
+        <PackageReference Include="Ninject" Version="3.3.6"/>
     </ItemGroup>
 
 </Project>
