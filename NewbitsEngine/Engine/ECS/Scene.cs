@@ -9,33 +9,27 @@ namespace NewbitsEngine.Engine.ECS;
 
 public sealed class Scene
 {
-	public GraphicsDevice GraphicsDevice { get; }
-	public EntityFactory EntityFactory { get; }
-	
+
 	private readonly List<Entity> entities;
 
 	public Scene(GraphicsDevice graphicsDevice, EntityFactory entityFactory, Texture2D texture)
 	{
 		GraphicsDevice = graphicsDevice;
 		EntityFactory = entityFactory;
-		
+
 		entities = new List<Entity>();
 
 		Entity cameraEntity = CreateEntity();
 		Camera = cameraEntity.AddComponent<Camera>();
-
-		Entity testEntity = CreateEntity();
-		SpriteRenderer spriteRenderer = testEntity.AddComponent<SpriteRenderer>();
-		spriteRenderer.Sprite = new Sprite(texture);
-		spriteRenderer.Origin = Vector2.One / 2f;
-		RotateComponent rotateComponent = testEntity.AddComponent<RotateComponent>();
 	}
+	public GraphicsDevice GraphicsDevice { get; }
+	public EntityFactory EntityFactory { get; }
 
 	public Camera Camera { get; }
 
 	public Entity CreateEntity()
 	{
-		var entity = EntityFactory.NewEntity(this);
+		Entity entity = EntityFactory.NewEntity(this);
 		entities.Add(entity);
 		return entity;
 	}
@@ -45,13 +39,13 @@ public sealed class Scene
 		foreach (Entity entity in entities)
 			entity.Update(time);
 	}
-	
+
 	public void Render(GameTime time)
 	{
 		if (Camera == null)
 			return;
-		
-		using SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
+
+		using SpriteBatch spriteBatch = new(GraphicsDevice);
 		spriteBatch.Begin(SpriteSortMode.Deferred,
 			BlendState.AlphaBlend,
 			SamplerState.PointClamp,

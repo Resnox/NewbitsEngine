@@ -6,15 +6,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 using NewbitsEngine.Engine.ECS.Components;
 
-using Ninject;
-
 namespace NewbitsEngine.Engine.ECS;
 
 public sealed class Entity
 {
 	private static uint lastId;
-	private ComponentFactory ComponentFactory { get; }
-	public Scene Scene { get; }
 
 	private readonly Dictionary<Type, Component> components;
 	private bool isDestroyed;
@@ -28,6 +24,8 @@ public sealed class Entity
 		Transform = new Transform(this);
 		Id = lastId++;
 	}
+	private ComponentFactory ComponentFactory { get; }
+	public Scene Scene { get; }
 
 	public uint Id { get; }
 
@@ -77,7 +75,7 @@ public sealed class Entity
 			if (component is IUpdatable updatableComponent && component.Enabled)
 				updatableComponent.Update(time);
 	}
-	
+
 	public void Render(SpriteBatch spriteBatch)
 	{
 		if (isDestroyed)

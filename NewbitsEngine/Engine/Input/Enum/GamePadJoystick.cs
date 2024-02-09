@@ -2,6 +2,6 @@
 
 public enum GamePadJoystick
 {
-    LeftStick,
-    RightStick
+	LeftStick,
+	RightStick
 }

@@ -38,7 +38,7 @@ internal class Program
 				));
 			}
 
-		using GameCore game = new GameCore();
+		using GameCore game = new();
 		game.Run();
 	}
 }

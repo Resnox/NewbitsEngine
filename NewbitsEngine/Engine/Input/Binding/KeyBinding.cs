@@ -8,21 +8,21 @@ namespace NewbitsEngine.Engine.Input.Binding;
 
 public class KeyBinding : IInputValue<float>
 {
-    private readonly Keyboard engine;
-    private readonly Keys key;
+	private readonly Keyboard engine;
+	private readonly Keys key;
 
-    public KeyBinding(Keyboard engine, Keys key)
-    {
-        this.engine = engine;
-        this.key = key;
-    }
+	public KeyBinding(Keyboard engine, Keys key)
+	{
+		this.engine = engine;
+		this.key = key;
+	}
 
-    #region IInputValue<float> Members
+	#region IInputValue<float> Members
 
-    public float GetValue()
-    {
-        return engine.IsKeyPressed(key) ? 1f : 0f;
-    }
+	public float GetValue()
+	{
+		return engine.IsKeyPressed(key) ? 1f : 0f;
+	}
 
-    #endregion
+	#endregion
 }

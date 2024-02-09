@@ -2,6 +2,6 @@
 
 public enum InputScheme
 {
-    KeyboardMouse,
-    Controller
+	KeyboardMouse,
+	Controller
 }

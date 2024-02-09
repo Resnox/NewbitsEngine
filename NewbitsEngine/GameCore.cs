@@ -1,9 +1,9 @@
-using System;
-
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using NewbitsEngine.Engine.ECS;
+using NewbitsEngine.Engine.Input;
 
 using Ninject;
 
@@ -13,22 +13,25 @@ namespace NewbitsEngine;
 
 public class GameCore : XnaGame
 {
-	private IKernel kernel;
+	private GraphicsDeviceManager GraphicsDeviceManager { get; }
+	private InputManager InputManager { get; }
 	private Scene currentScene;
+	private IKernel kernel;
 	private Texture2D texture2D;
-	private GraphicsDeviceManager graphicsDeviceManager;
-	
+
 	public GameCore()
 	{
-		graphicsDeviceManager = new GraphicsDeviceManager(this);
-		graphicsDeviceManager.PreferredBackBufferWidth = 1280;
-		graphicsDeviceManager.PreferredBackBufferHeight = 720;
-		graphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
-		graphicsDeviceManager.IsFullScreen = false;
+		GraphicsDeviceManager = new GraphicsDeviceManager(this);
+		GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
+		GraphicsDeviceManager.PreferredBackBufferHeight = 720;
+		GraphicsDeviceManager.SynchronizeWithVerticalRetrace = true;
+		GraphicsDeviceManager.IsFullScreen = false;
 
 		Window.AllowUserResizing = true;
 
 		Content.RootDirectory = "Content";
+
+		InputManager = new InputManager();
 
 		IsMouseVisible = false;
 		IsFixedTimeStep = false;
@@ -38,9 +41,11 @@ public class GameCore : XnaGame
 	{
 		base.Initialize();
 		kernel = new StandardKernel();
-		kernel.Bind<GraphicsDevice>().ToConstant(graphicsDeviceManager.GraphicsDevice);
-		kernel.Bind<Texture2D>().ToConstant(texture2D);
-		
+		kernel.Bind<GraphicsDevice>().ToConstant(GraphicsDeviceManager.GraphicsDevice).InSingletonScope();
+		kernel.Bind<Texture2D>().ToConstant(texture2D).InSingletonScope();
+		kernel.Bind<InputManager>().ToConstant(InputManager).InSingletonScope();
+		kernel.Bind<ContentManager>().ToConstant(Content).InSingletonScope();
+
 		currentScene = kernel.Get<Scene>();
 	}
 
@@ -54,7 +59,7 @@ public class GameCore : XnaGame
 	{
 		base.UnloadContent();
 	}
-	
+
 	protected override void Update(GameTime gameTime)
 	{
 		base.Update(gameTime);

@@ -2,6 +2,6 @@
 
 public enum GamePadTrigger
 {
-    LeftTrigger,
-    RightTrigger
+	LeftTrigger,
+	RightTrigger
 }

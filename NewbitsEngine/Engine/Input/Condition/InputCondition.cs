@@ -2,12 +2,12 @@
 
 public abstract class InputCondition
 {
-    protected readonly InputManager inputManager;
+	protected readonly InputManager inputManager;
 
-    public InputCondition(InputManager inputManager)
-    {
-        this.inputManager = inputManager;
-    }
+	public InputCondition(InputManager inputManager)
+	{
+		this.inputManager = inputManager;
+	}
 
-    public abstract bool IsValid();
+	public abstract bool IsValid();
 }
